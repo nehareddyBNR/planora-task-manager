@@ -1,0 +1,24 @@
+
+# Dependencies
+node_modules/
+cdk/node_modules/
+
+# Environment variables / secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+npm-debug.log*
+*.log
+
+# CDK
+cdk/cdk.out/
+cdk/*.d.ts
+cdk/*.js
+!cdk/jest.config.js
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
