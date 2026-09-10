@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Planora — Smart Task Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============ AUTH SCREEN ============ -->
+  <section id="auth-screen" class="auth-screen">
+    <div class="auth-card">
+      <div class="brand">
+        <div class="brand-mark">P</div>
+        <h1>Planora</h1>
+      </div>
+      <p class="tagline">Plan smarter. Finish faster.</p>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login">Log In</button>
+        <button class="auth-tab" data-tab="signup">Sign Up</button>
+      </div>
+
+      <form id="login-form" class="auth-form">
+        <label>Email
+          <input type="email" id="login-email" required autocomplete="email" />
+        </label>
+        <label>Password
+          <input type="password" id="login-password" required autocomplete="current-password" />
+        </label>
+        <button type="submit" class="btn btn-primary">Log In</button>
+        <p class="form-error" id="login-error"></p>
+      </form>
+
+      <form id="signup-form" class="auth-form hidden">
+        <label>Name
+          <input type="text" id="signup-name" required autocomplete="name" />
+        </label>
+        <label>Email
+          <input type="email" id="signup-email" required autocomplete="email" />
+        </label>
+        <label>Password
+          <input type="password" id="signup-password" required minlength="6" autocomplete="new-password" />
+        </label>
+        <button type="submit" class="btn btn-primary">Create Account</button>
+        <p class="form-error" id="signup-error"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ DASHBOARD ============ -->
+  <section id="dashboard-screen" class="dashboard-screen hidden">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">P</div>
+        <h1>Planora</h1>
+      </div>
+      <div class="topbar-right">
+        <span id="user-name" class="user-name"></span>
+        <button id="logout-btn" class="btn btn-ghost">Log Out</button>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="content-header">
+        <div>
+          <h2>Your Tasks</h2>
+          <p class="subtle" id="task-count"></p>
+        </div>
+        <button id="new-task-btn" class="btn btn-primary">+ New Task</button>
+      </div>
+
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-status="">All</button>
+        <button class="filter-tab" data-status="pending">Pending</button>
+        <button class="filter-tab" data-status="completed">Completed</button>
+      </div>
+
+      <div id="task-list" class="task-list"></div>
+      <div id="empty-state" class="empty-state hidden">
+        <p>No tasks here yet.</p>
+        <button class="btn btn-primary" id="empty-new-task-btn">Create your first task</button>
+      </div>
+    </main>
+  </section>
+
+  <!-- ============ NEW TASK MODAL ============ -->
+  <div id="task-modal" class="modal-overlay hidden">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>New Task</h3>
+        <button id="close-modal-btn" class="btn-icon" aria-label="Close">&times;</button>
+      </div>
+      <form id="task-form">
+        <label>Title
+          <input type="text" id="task-title" required />
+        </label>
+        <label>Description
+          <textarea id="task-description" rows="3"></textarea>
+        </label>
+        <div class="form-row">
+          <label>Deadline
+            <input type="date" id="task-deadline" />
+          </label>
+          <label>Difficulty
+            <select id="task-difficulty">
+              <option value="">—</option>
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+          </label>
+          <label>Priority
+            <select id="task-priority">
+              <option value="">—</option>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+          </label>
+        </div>
+        <p class="form-error" id="task-error"></p>
+        <div class="modal-actions">
+          <button type="button" id="cancel-task-btn" class="btn btn-ghost">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Task</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
